@@ -2,6 +2,7 @@ from keras.datasets import cifar10
 from keras import utils
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPool2D, Flatten, Dense, Dropout
+from keras.callbacks import ModelCheckpoint
 
 import matplotlib.pyplot as plt
 
@@ -110,6 +111,23 @@ model.add(
 
 model.summary()
 
+model.compile(
+    loss='categorical_crossentropy', 
+    optimizer='rmsprop', 
+    metrics=['accuracy']
+)
 
 
+ch = ModelCheckpoint(filepath='model_best.keras', verbose=1, save_best_only=True)
+
+model.fit(
+    x=x_train, 
+    y=y_train, 
+    batch_size=32, 
+    epochs=100, 
+    validation_data=(x_valid, y_valid), 
+    verbose=1, 
+    callbacks=[ch],
+    shuffle=True,
+)
 
