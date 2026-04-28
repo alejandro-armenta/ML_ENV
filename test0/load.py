@@ -46,3 +46,8 @@ for i, idx in enumerate(np.random.choice(x_test.shape[0], size=32, replace=False
                  color=("green" if pred_idx == true_idx else "red"))
 
 plt.savefig('predictions.png')
+
+#underfitting
+
+#necesito un modelo mas complejo
+
